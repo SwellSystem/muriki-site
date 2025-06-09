@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>404 - Página não encontrada | Muriki</title>
+
+    <!-- Fontes modernas -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        /* RESET BÁSICO */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        :root {
+            /* LIGHT MODE */
+            --primary: #e53e3e;
+            --primary-light: #fc8181;
+            --primary-dark: #c53030;
+            --accent: #f56565;
+            --accent-light: #feb2b2;
+            --accent-dark: #e53e3e;
+            --text: #1a1a1a;
+            --text-muted: #555555;
+            --text-light: #777777;
+            --bg: #fff5f5;
+            --bg-alt: #fed7d7;
+            --bg-card: #ffffff;
+            --radius: 12px;
+            --radius-lg: 16px;
+            --shadow: rgba(229, 62, 62, 0.08);
+            --shadow-lg: rgba(229, 62, 62, 0.15);
+            --border-color: #feb2b2;
+            --gradient-primary: linear-gradient(135deg, #e53e3e 0%, #fc8181 100%);
+            --gradient-accent: linear-gradient(135deg, #f56565 0%, #feb2b2 100%);
+        }
+
+        body.dark {
+            /* DARK MODE */
+            --primary: #fc8181;
+            --primary-light: #feb2b2;
+            --primary-dark: #f56565;
+            --accent: #feb2b2;
+            --accent-light: #fed7d7;
+            --accent-dark: #fc8181;
+            --text: #f0f0f0;
+            --text-muted: #a0a0a0;
+            --text-light: #888888;
+            --bg: #1a0000;
+            --bg-alt: #2a0000;
+            --bg-card: #2a0000;
+            --shadow: rgba(252, 129, 129, 0.3);
+            --shadow-lg: rgba(252, 129, 129, 0.5);
+            --border-color: #3a0000;
+        }
+
+        .error-container {
+            max-width: 600px;
+            padding: 3rem;
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            box-shadow: 0 4px 20px var(--shadow);
+            animation: fadeInUp 0.6s ease-out;
+            border: 1px solid var(--border-color);
+        }
+
+        .error-code {
+            font-size: 120px;
+            font-weight: 900;
+            margin: 0;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            text-shadow: 0 2px 4px var(--shadow);
+        }
+
+        .error-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin: 1rem 0;
+            color: var(--primary);
+        }
+
+        .error-message {
+            font-size: 18px;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .home-button {
+            display: inline-block;
+            padding: 12px 25px;
+            background: var(--gradient-primary);
+            color: white;
+            text-decoration: none;
+            border-radius: var(--radius);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 2px 4px var(--shadow);
+        }
+
+        .home-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px var(--shadow);
+            background: var(--gradient-accent);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="error-container">
+        <h1 class="error-code">404</h1>
+        <h2 class="error-title">Ops! Página não encontrada</h2>
+        <p class="error-message">A página que você está procurando não existe ou foi movida.</p>
+        <p class="error-message" id="redirect-message">Você será redirecionado em <span id="countdown">5</span>
+            segundos...</p>
+        <a href="/" class="home-button">Voltar para a página inicial</a>
+    </div>
+
+    <script>
+        // Função para atualizar a contagem regressiva
+        function updateCountdown() {
+            const countdownElement = document.getElementById('countdown');
+            let seconds = 5;
+
+            const countdownInterval = setInterval(() => {
+                seconds--;
+                countdownElement.textContent = seconds;
+
+                if (seconds <= 0) {
+                    clearInterval(countdownInterval);
+                    window.location.href = '/';
+                }
+            }, 1000);
+        }
+
+        // Iniciar a contagem regressiva quando a página carregar
+        window.onload = updateCountdown;
+    </script>
+</body>
+
+</html>
