@@ -1891,10 +1891,11 @@
             });
         });
 
-        // Alerta personalizado ao clicar em Login
+        // Redirecionamento ao clicar em Login
         document.querySelectorAll('.login-link').forEach(link => {
             link.addEventListener('click', function (e) {
-                alert('você tinha razão ficou muito melhor ❤️');
+                e.preventDefault();
+                window.location.href = 'https://platform.muriki.app';
             });
         });
     </script>
